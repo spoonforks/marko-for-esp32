@@ -5,6 +5,8 @@ Microphone audio is streamed as Opus to the bridge,
 transcribed locally, sent to Ollama or another OpenAI-compatible local server,
 spoken with Piper, and streamed back to the device.
 
+<img width="946" height="947" alt="MarkoBody" src="https://github.com/user-attachments/assets/19986c77-b5e1-45d8-a123-6c5338482b9b" />
+
 ## Quick start
 
 1. Install Python 3.11+ and FFmpeg.

@@ -1,13 +1,9 @@
 # Marko for ESP32
 
-Connect a Xiaozhi-compatible ESP32-S3 voice device to an AI assistant running
-on your own computer. Microphone audio is streamed as Opus to the bridge,
+Give your local AI agent a body by connecting an ESP32-S3. These are quite cheap on Aliexpress! 
+Microphone audio is streamed as Opus to the bridge,
 transcribed locally, sent to Ollama or another OpenAI-compatible local server,
 spoken with Piper, and streamed back to the device.
-
-No model, voice, conversation, memory, credential, certificate, or personal
-assistant configuration is included. Runtime data stays in the ignored
-`data/` folder.
 
 ## Quick start
 

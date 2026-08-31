@@ -14,7 +14,7 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements-dev.txt
       - run: cp config/assistant.example.yaml config/assistant.yaml
-      - run: pytest tests
+      - run: python -m pytest tests
         env:
           MARKO_PROVISIONING_KEY: test-provisioning-key-00000000000000000000
           MARKO_DEVICE_AUTH_TOKEN: test-device-token-0000000000000000000000

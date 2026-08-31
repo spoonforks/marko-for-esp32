@@ -1,0 +1,26 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements-dev.txt
+      - run: cp config/assistant.example.yaml config/assistant.yaml
+      - run: pytest tests
+        env:
+          MARKO_PROVISIONING_KEY: test-provisioning-key-00000000000000000000
+          MARKO_DEVICE_AUTH_TOKEN: test-device-token-0000000000000000000000
+          MARKO_PUBLIC_BASE_URL: https://example.ts.net
+      - name: Verify firmware patch at pinned upstream revision
+        run: |
+          python scripts/prepare_firmware.py
+          test "$(git -C firmware-src rev-parse HEAD)" = "5df5b7fb4da2b4d80e2b7f87285ec1f8a9ca565c"
+          git -C firmware-src diff --check

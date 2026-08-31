@@ -1,0 +1,48 @@
+assistant:
+  name: "Marko"
+  personality: |-
+    You are a helpful local voice assistant. Speak naturally, keep spoken
+    answers concise, and say when you are unsure. Replace this paragraph with
+    your own voice, values, boundaries, and preferred style.
+
+llm:
+  provider: "ollama" # "ollama" or "openai" for an OpenAI-compatible server
+  base_url: "http://127.0.0.1:11434"
+  model: "your-local-model"
+  temperature: 0.7
+  num_ctx: 8192
+  request_timeout_seconds: 180
+
+stt:
+  model_size: "base"
+  device: "auto"
+  compute_type: "auto"
+  language: "en"
+
+tts:
+  binary_path: "piper"
+  model_path: "voices/your-voice.onnx"
+  config_path: "voices/your-voice.onnx.json"
+  speaker:
+
+server:
+  host: "127.0.0.1"
+  port: 8001
+
+memory:
+  max_items: 100
+  inject_limit: 20
+
+tools:
+  weather:
+    enabled: false
+    default_location: ""
+    geocoding_country_code: ""
+  obsidian:
+    enabled: false
+    vault_path: ""
+    inbox_folder: "Inbox"
+    daily_notes_folder: "Daily"
+    search_result_limit: 5
+    write_requires_explicit_instruction: true
+    task_note_title: "Tasks"

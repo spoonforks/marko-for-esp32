@@ -1,0 +1,31 @@
+diff --git a/main/Kconfig.projbuild b/main/Kconfig.projbuild
+index 69b9c5a..4b3e351 100644
+--- a/main/Kconfig.projbuild
++++ b/main/Kconfig.projbuild
+@@ -5,6 +5,12 @@ config OTA_URL
+     help
+         The application will access this URL to check for new firmwares and server address.
+ 
++config MARKO_PROVISIONING_KEY
++    string "Marko provisioning key"
++    default ""
++    help
++        Private key sent only in the X-Marko-Provisioning-Key OTA header.
++
+ choice
+     prompt "Flash Assets"
+     default FLASH_DEFAULT_ASSETS if !USE_EMOTE_MESSAGE_STYLE
+diff --git a/main/ota.cc b/main/ota.cc
+index f7ad7bc..945ef4c 100644
+--- a/main/ota.cc
++++ b/main/ota.cc
+@@ -67,6 +67,9 @@ std::unique_ptr<Http> Ota::SetupHttp() {
+     http->SetHeader("User-Agent", user_agent);
+     http->SetHeader("Accept-Language", Lang::CODE);
+     http->SetHeader("Content-Type", "application/json");
++    if (CONFIG_MARKO_PROVISIONING_KEY[0] != '\0') {
++        http->SetHeader("X-Marko-Provisioning-Key", CONFIG_MARKO_PROVISIONING_KEY);
++    }
+ 
+     return http;
+ }
